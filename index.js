@@ -2,8 +2,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-//Llamamos conexion
+//Llamamos conexion, routes
 const conn = require('./conn/conn');
+const api = require('./routes')
 
 //Llamamos express
 const app = express();
@@ -16,8 +17,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.use('/api', api);
+
 //Creamos el puerto de salida del servidor
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4005;
 
 //Se envia mensaje para probar respuesta del servidor
 app.get('/', (req, res) => res.send('Server Express'));
