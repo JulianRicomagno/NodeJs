@@ -5,7 +5,7 @@ function getItem(req, res) {
     console.log("getItem Id: " + itemId);
     itemModel.findById(itemId, (err, item) => {
         if (err) return res.status(500).send({message: `Error al realizar la peticion: ${err}`});
-        if (!item) return res.status(404).send({message: `El departamento no existe`});
+        if (!item) return res.status(404).send({message: `El item no existe`});
         console.log("Item: " + item);
         res.status(200).send({ item: item });
     });
