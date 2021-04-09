@@ -8,3 +8,11 @@ const fileModel = new schema({
 });
 
 module.exports = mongoose.model('File', fileModel);
+
+/*
+{
+	"name": prueba, 
+	"type": files,
+	"data": docFile
+}
+*/
