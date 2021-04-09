@@ -1,0 +1,42 @@
+// empty the collection
+Image.remove(err => {
+    if (err) throw err;
+    console.log("Removed all documents in 'images' collection.");
+    var imageData = fs.readFileSync(__dirname + '/static/assets/images/jsa-header.png');
+		
+    // Create an Image instance
+    const image = new Image({
+        type: 'image/png',
+        data: imageData
+    });
+
+    // Store the Image to the MongoDB
+    image.save().then(img => {
+        console.log("Saved an image 'jsa-header.png' to MongoDB.");
+        
+        // Find the stored image in MongoDB, then save it in '/static/assets/tmp' folder
+
+        Image.findById(img, (err, findOutImage) => {
+            if (err) throw err;
+            try{
+                fs.writeFileSync(__dirname + '/static/assets/tmp/tmp-jsa-header.png', findOutImage.data);
+                console.log("Stored an image 'tmp-jsa-header.png' in '/static/assets/tmp' folder.");
+                
+                // exit node.js app
+
+                console.log("Exit!");
+                process.exit(0);
+            }catch(e){
+                console.log(e);
+            }
+        });
+    }).catch(err => {
+        console.log(err);
+        throw err;
+    });
+})
+	
+}).catch(err => {
+    console.log('Could not connect to MongoDB.');
+    process.exit();
+});

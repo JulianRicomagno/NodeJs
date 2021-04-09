@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
+
 const db_path = 'mongodb://localhost/test';
 const config = {
     useNewUrlParser: true,
