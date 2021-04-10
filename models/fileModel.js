@@ -3,8 +3,8 @@ const schema = mongoose.Schema;
 
 const fileModel = new schema({
     name: String,
-    type: String,
-    data: Buffer
+    author: String,
+    type: String
 });
 
 module.exports = mongoose.model('File', fileModel);
@@ -12,7 +12,7 @@ module.exports = mongoose.model('File', fileModel);
 /*
 {
 	"name": prueba, 
-	"type": files,
+	"type": /d/Atom/NodeJs/files/prueba.txt,
 	"data": docFile
 }
 */

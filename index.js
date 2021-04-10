@@ -18,7 +18,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use('/api', api);
-
+app.use('/files', express.static('files'));
 //Creamos el puerto de salida del servidor
 const port = process.env.PORT || 4005;
 

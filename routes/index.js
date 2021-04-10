@@ -9,6 +9,7 @@ const fileController = require('../controller/fileController');
 const api = express.Router();
 
 const validarPostItem = require('../middlewares/itemPostValidation');
+const file = require('../middlewares/fileUpload');
 
 //item
 api.get('/items', itemController.getItems);
@@ -18,7 +19,7 @@ api.put('/item/:itemId', itemController.updateItem);
 api.delete('/item/:itemId', itemController.deleteItem);
 //file
 api.get('/file/:fileId', fileController.getFile);
-api.post('/file', fileController.saveFile);
+api.post('/file', file.single('type'), fileController.saveFile);
 //post
 api.get('/blog/post', postController.getPosts);
 api.get('/blog/post/:postId', postController.getPost);

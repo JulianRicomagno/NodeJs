@@ -18,8 +18,10 @@ function saveFile(req, res) {
     let file = new fileModel();
     // los req.body.param son los parametros que se mandan en el body
     file.name = req.body.name;
-    file.type = req.body.type;
-    file.data = req.body.data;
+    file.author = req.body.author;
+    if(req.file){
+        file.type = req.file.path
+    };
     console.log("saveFile: " + file);
     file.save( (err) => {
         if (err) return res.status(400).send({error: true, message: "Invalid JSON"});
